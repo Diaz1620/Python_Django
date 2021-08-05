@@ -10,3 +10,14 @@ def generateAcronym(stringInput):
 
 
 generateAcronym("        national      basketball        association")
+
+
+def acronym2(stringInput):
+    y = stringInput.split()
+    # print(y)
+    result = ""
+    for word in y:
+        result += word[0]
+    return result.upper()
+
+print(acronym2("   national      basketball    association"))
