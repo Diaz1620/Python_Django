@@ -10,5 +10,9 @@ class User:
 guido = User("Guido van Rossum", "guido@python.com")
 monty = User("Monty Python", "monty@python.com")
 
-guido.make_deposit()
+guido.make_deposit(100)
+guido.make_deposit(200)
+monty.make_deposit(50)
+print(guido.account_balance)
+print(monty.account_balance)
 
