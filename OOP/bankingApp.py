@@ -10,11 +10,11 @@ class User:
         self.account_balance -= amount
     def display_user_balance(self):
         print(self.name + ", Balance: $" + str(self.account_balance) )
-    def transfer(self, other_person, amount):
+    def transfer(self, name, amount):
         self.make_withdrawal(amount)
-        other_person.account_balance += amount
-        self.display_user_balance
-        other_person.display_user_balance
+        name.make_deposit(amount)
+        self.display_user_balance()
+        name.display_user_balance()
 
 guido = User("Guido van Rossum", "guido@python.com")
 monty = User("Monty Python", "monty@python.com")
