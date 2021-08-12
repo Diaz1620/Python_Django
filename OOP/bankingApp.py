@@ -4,18 +4,30 @@ class User:
     def __init__(self, name, email_address):
         self.name = name
         self.email = email_address
-        self.account = BankAccount(.02)
+        self.checkings = BankAccount(.02)
+        self.savings = BankAccount(.05, 100)
     # adding deposit method
-    def make_deposit(self, amount):
-        self.account.deposit(amount)
-        self.display_user_balance()
+    def make_deposit(self, amount, account):
+        if account == "checkings":
+            self.checkings.deposit(amount)
+            # self.display_user_balance("checkings")
+        elif account == "savings":
+            self.savings.deposit(amount)
+            # self.display_user_balance("savings")
         return self
-    def make_withdrawal(self,amount):
-        self.account.withdraw(amount)
-        self.display_user_balance()
+    def make_withdrawal(self,amount, account):
+        if account == "checkings":
+            self.checkings.withdraw(amount)
+            # self.display_user_balance("checkings")
+        elif account == "savings":
+            self.savings.withdraw(amount)
+            # self.display_user_balance("savings")
         return self
-    def display_user_balance(self):
-        print(self.name + ", Balance: " + str(self.account.display_account_info()))
+    def display_user_balance(self, account):
+        if account == "checkings":
+            print(self.name + ", Balance: " + str(self.checkings.display_account_info()))
+        elif account == "savings":
+            print(self.name + ", Balance: " + str(self.savings.display_account_info()))
         return self
     def transfer(self, name, amount):
         self.make_withdrawal(amount)
@@ -39,7 +51,7 @@ class BankAccount:
             self.balance -= amount
         return self
     def display_account_info(self):
-        
+        print(f"Balance: ${self.balance}")
         return self.balance
     def yield_interest(self):
         if self.balance > 0:
@@ -49,15 +61,17 @@ class BankAccount:
 guido = User("Guido van Rossum", "guido@python.com")
 monty = User("Monty Python", "monty@python.com")
 
-guido.make_deposit(100)
-monty.make_deposit(50)
-guido.display_user_balance()
-monty.display_user_balance()
-guido.make_withdrawal(50)
+guido.make_deposit(100, 'checkings')
+guido.checkings.display_account_info()
+guido.savings.display_account_info()
+# monty.make_deposit(50)
+# guido.display_user_balance()
+# monty.display_user_balance()
+# guido.make_withdrawal(50)
 
 
-larry = User("Larry Larrod", "ll@test.com")
-harry = User("Harry Potts", "harryp@wiz.com")
+# larry = User("Larry Larrod", "ll@test.com")
+# harry = User("Harry Potts", "harryp@wiz.com")
 
-larry.make_deposit(100).make_deposit(300).make_deposit(200).display_user_balance().transfer(harry, 200)
+# larry.make_deposit(100).make_deposit(300).make_deposit(200).display_user_balance().transfer(harry, 200)
 
