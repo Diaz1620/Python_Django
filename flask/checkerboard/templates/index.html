@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Standard 8 x 8</h1>
+    {% for x in range(4) %}
+        <div class="row">
+            {% for y in range(4) %}
+                <div class="box1"></div>
+                <div class="box2"></div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            {% for y in range(4) %}
+                <div class="box2"></div>
+                <div class="box1"></div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+    
+    <h1>Input x 8</h1>
+    {% for x in range(numx) %}
+        <div class="row">
+            {% for y in range(8) %}
+                <div class="box{{ ((x+y) % 2) + 1}}"></div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    <h1>Two Inputs</h1>
+    {% for x in range(numx) %}
+        <div class="row">
+            {% for y in range(numy) %}
+                <div class="box{{ ((x+y) % 2) + 1}}"></div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</body>
+</html>
